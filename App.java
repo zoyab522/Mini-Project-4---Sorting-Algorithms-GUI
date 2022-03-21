@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -22,15 +23,16 @@ public class App extends Application {
         Tab tabBubbleSort = new Tab("Bubble Sort");
         Tab tabSelectionSort = new Tab("Selection Sort");
         Tab tabInsertionSort = new Tab("Insertion Sort");
-        
-        HBox defaultTabHBox = new HBox();
-        
+        Tab tabQuickSort = new Tab("Quick Sort");
+                
         tabPane.getTabs().add(tabSortingIntro);
         tabPane.getTabs().add(tabBubbleSort);
         tabPane.getTabs().add(tabSelectionSort);
         tabPane.getTabs().add(tabInsertionSort);
+        tabPane.getTabs().add(tabQuickSort);  
         
-        Scene scene = new Scene(tabPane, 600, 600);
+        Scene scene = new Scene(tabPane, 1300, 800);
+        
         scene.getStylesheets().add("application.css");
         
         stage.setScene(scene);
