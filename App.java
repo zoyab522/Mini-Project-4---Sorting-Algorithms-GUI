@@ -32,9 +32,6 @@ public class App extends Application {
         // SORTING INTRO TAB ---------------------------------------------------
         Tab tabSortingIntro = new Tab("Sorting Intro");
         
-        Tab tabInsertionSort = new Tab("Insertion Sort");
-        Tab tabQuickSort = new Tab("Quick Sort");
-
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
         
@@ -147,14 +144,96 @@ public class App extends Application {
         
         // INSERTION SORT TAB --------------------------------------------------
         
+        Tab tabInsertionSort = new Tab("Insertion Sort");
         
+        VBox insertionSortVBox = new VBox();
+        insertionSortVBox.setSpacing(80);
         
+        HBox insertionSortHBox1 = new HBox();
+        insertionSortHBox1.setAlignment(Pos.TOP_CENTER);
         
+        HBox insertionSortHBox2 = new HBox();
         
+        HBox insertionSortHBox3 = new HBox();
+        insertionSortHBox3.setAlignment(Pos.CENTER);
         
+        Label insertionSortLabel = new Label("\n\nInsertion Sort Description: "
+                + "Insertion Sort splits an array into a sorted and an unsorted part. Values "
+                + "from \nthe unsorted part are picked and placed at the correct position in the sorted part.\n\n");
         
+        insertionSortHBox1.getChildren().add(insertionSortLabel);
+        
+        TextField ifield1 = new TextField();
+        TextField ifield2 = new TextField();
+        TextField ifield3 = new TextField();
+        TextField ifield4 = new TextField();
+        TextField ifield5 = new TextField();
+        TextField ifield6 = new TextField();
+        TextField ifield7 = new TextField();
+        TextField ifield8 = new TextField();
+        TextField ifield9 = new TextField();
+        TextField ifield10 = new TextField();
+                
+        insertionSortHBox2.getChildren().addAll
+        (ifield1, ifield2, ifield3, ifield4, ifield5, ifield6, ifield7, ifield8, ifield9, ifield10);
+        
+        Button randBtnInsertionSort = new Button("Generate Random Numbers");
+        Button startSortBtnInsertionSort = new Button("Start Bubble Sort");
+        Button resetBtnInsertionSort = new Button("Reset Numbers");
+        
+        insertionSortHBox3.getChildren().addAll(randBtnInsertionSort, startSortBtnInsertionSort, resetBtnInsertionSort);
+        
+        insertionSortVBox.getChildren().addAll(insertionSortHBox1, insertionSortHBox2, insertionSortHBox3);
+
+        tabInsertionSort.setContent(insertionSortVBox); // set content line
         
         tabPane.getTabs().add(tabInsertionSort);
+        
+        // QUICK SORT TAB ------------------------------------------------------
+        
+        Tab tabQuickSort = new Tab("Quick Sort");
+        
+        VBox quickSortVBox = new VBox();
+        quickSortVBox.setSpacing(80);
+        
+        HBox quickSortHBox1 = new HBox();
+        quickSortHBox1.setAlignment(Pos.TOP_CENTER);
+        
+        HBox quickSortHBox2 = new HBox();
+        
+        HBox quickSortHBox3 = new HBox();
+        quickSortHBox3.setAlignment(Pos.CENTER);
+        
+        Label quickSortLabel = new Label("\n\nQuick Sort Description: "
+                + "Quick Sort picks an element as a 'pivot' and partitions the given array "
+                + "around the picked pivot.\n\n");
+        
+        quickSortHBox1.getChildren().add(quickSortLabel);
+        
+        TextField qfield1 = new TextField();
+        TextField qfield2 = new TextField();
+        TextField qfield3 = new TextField();
+        TextField qfield4 = new TextField();
+        TextField qfield5 = new TextField();
+        TextField qfield6 = new TextField();
+        TextField qfield7 = new TextField();
+        TextField qfield8 = new TextField();
+        TextField qfield9 = new TextField();
+        TextField qfield10 = new TextField();
+                
+        quickSortHBox2.getChildren().addAll
+        (qfield1, qfield2, qfield3, qfield4, qfield5, qfield6, qfield7, qfield8, qfield9, qfield10);
+        
+        Button randBtnQuickSort = new Button("Generate Random Numbers");
+        Button startSortBtnQuickSort = new Button("Start Bubble Sort");
+        Button resetBtnQuickSort = new Button("Reset Numbers");
+        
+        quickSortHBox3.getChildren().addAll(randBtnQuickSort, startSortBtnQuickSort, resetBtnQuickSort);
+        
+        quickSortVBox.getChildren().addAll(quickSortHBox1, quickSortHBox2, quickSortHBox3);
+
+        tabQuickSort.setContent(quickSortVBox); // set content line
+        
         tabPane.getTabs().add(tabQuickSort);
 
         Scene scene = new Scene(tabPane, 1300, 800);
