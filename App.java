@@ -1,7 +1,7 @@
 package com.mycompany.sortingalgorithmsgui;
 
-import static com.mycompany.sortingalgorithmsgui.SortingAlgorithms.*;
-import static com.mycompany.sortingalgorithmsgui.MergeSort.*;
+import static com.mycompany.tabtest.SortingAlgorithms.*;
+import static com.mycompany.tabtest.MergeSort.*;
 import java.util.Random;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -17,6 +17,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.io.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 /**
  * JavaFX App
@@ -42,14 +48,28 @@ public class App extends Application {
         HBox hbox = new HBox();
         hbox.setAlignment(Pos.CENTER);
         
+        //Adds background image to Sorting Intro
+        Image image = null;
         
+        try {
+            image = new Image(new FileInputStream("src/main/images/mp.png"));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        
+        ImageView imageViewTJG = new ImageView(image);
+        hbox.getChildren().add(imageViewTJG);
+        imageViewTJG.setPreserveRatio(true);
+        imageViewTJG.setFitHeight(800);
+        
+        /*
         Label SortingIntroLabel = new Label("Sorting Efficiency" + "\n" + "\n" + 
                 "The two main criterias to judge which algorithm is better than the other have been:" 
                 + "\n" + "\n" 
                 + "    1 - Time taken to sort the given data." + ""
                 + "\n" + "    2 - Memory Space required to do so.");
         
-        hbox.getChildren().add(SortingIntroLabel);
+        hbox.getChildren().add(SortingIntroLabel);*/
         
         tabSortingIntro.setContent(hbox); // set content line
         
@@ -552,7 +572,14 @@ public class App extends Application {
         Scene scene = new Scene(tabPane, 1300, 800);
 
         scene.getStylesheets().add("application.css");
-
+        /*Image img = new Image("src/main/images/mainpage.png");
+        BackgroundImage bImg = new BackgroundImage(img,
+                                                   BackgroundRepeat.NO_REPEAT,
+                                                   BackgroundRepeat.NO_REPEAT,
+                                                   BackgroundPosition.DEFAULT,
+                                                   BackgroundSize.DEFAULT);
+        Background bGround = new Background(bImg);
+        tabPane.setBackground(bGround);*/
         stage.setScene(scene);
         stage.show();
     }
