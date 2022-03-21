@@ -1,9 +1,5 @@
-package com.mycompany.tabtest;
+package com.mycompany.sortingalgorithmsgui;
 
-/**
- *
- * @author anika
- */
 public class MergeSort {
     
     public static void merge(int Arr[], int start, int mid, int end) {
