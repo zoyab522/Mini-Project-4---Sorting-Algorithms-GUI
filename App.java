@@ -1,6 +1,7 @@
 package com.mycompany.sortingalgorithmsgui;
 
-import static com.mycompany.tabtest.SortingAlgorithms.swapElements;
+import static com.mycompany.sortingalgorithmsgui.SortingAlgorithms.*;
+import static com.mycompany.sortingalgorithmsgui.MergeSort.*;
 import java.util.Random;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -98,6 +99,8 @@ public class App extends Application {
         mergeSortVBox.getChildren().addAll(mergeSortHBox1, mergeSortHBox2, mergeSortHBox3);
 
         int[] numsM = new int[10];
+        int first = 0;
+        int last = numsM.length;
         
         randBtnMerge.setOnAction(event -> {
             for (int i = 0; i < numsM.length; i++) {
@@ -116,6 +119,25 @@ public class App extends Application {
             mfield9.setText(Integer.toString(numsM[8]));
             mfield10.setText(Integer.toString(numsM[9]));
                 
+        });
+        
+        startSortBtnMerge.setOnAction(event -> {
+            if (!(SortingAlgorithms.isSorted(numsM, 0, numsM.length))) {
+                
+            mergeSort(numsM,first,last);
+            
+            mfield1.setText(Integer.toString(numsM[0]));   
+            mfield2.setText(Integer.toString(numsM[1]));
+            mfield3.setText(Integer.toString(numsM[2]));
+            mfield4.setText(Integer.toString(numsM[3]));
+            mfield5.setText(Integer.toString(numsM[4]));
+            mfield6.setText(Integer.toString(numsM[5]));
+            mfield7.setText(Integer.toString(numsM[6]));
+            mfield8.setText(Integer.toString(numsM[7]));
+            mfield9.setText(Integer.toString(numsM[8]));
+            mfield10.setText(Integer.toString(numsM[9]));
+                
+            }        
         });
         
         resetBtnMerge.setOnAction(event -> {
@@ -195,9 +217,6 @@ public class App extends Application {
                 
         });
         
-        int first = 0;
-        int last = numsS.length;
-        
         startSortBtnSelectionSort.setOnAction(event -> {
             if (!(SortingAlgorithms.isSorted(numsS, 0, numsS.length))) {
                 
@@ -216,20 +235,21 @@ public class App extends Application {
                 // We now know the smallest value in the unsorted array
                 if (i != iSmall) { // if the smallest value isn't the first one, swap
                     swapElements(numsS, i, iSmall);
-                    
-                    sfield1.setText(Integer.toString(numsS[0]));   
-                    sfield2.setText(Integer.toString(numsS[1]));
-                    sfield3.setText(Integer.toString(numsS[2]));
-                    sfield4.setText(Integer.toString(numsS[3]));
-                    sfield5.setText(Integer.toString(numsS[4]));
-                    sfield6.setText(Integer.toString(numsS[5]));
-                    sfield7.setText(Integer.toString(numsS[6]));
-                    sfield8.setText(Integer.toString(numsS[7]));
-                    sfield9.setText(Integer.toString(numsS[8]));
-                    sfield10.setText(Integer.toString(numsS[9]));
+         
                 }
             
             }
+            
+            sfield1.setText(Integer.toString(numsS[0]));   
+            sfield2.setText(Integer.toString(numsS[1]));
+            sfield3.setText(Integer.toString(numsS[2]));
+            sfield4.setText(Integer.toString(numsS[3]));
+            sfield5.setText(Integer.toString(numsS[4]));
+            sfield6.setText(Integer.toString(numsS[5]));
+            sfield7.setText(Integer.toString(numsS[6]));
+            sfield8.setText(Integer.toString(numsS[7]));
+            sfield9.setText(Integer.toString(numsS[8]));
+            sfield10.setText(Integer.toString(numsS[9]));
                 
             }        
         });
@@ -313,6 +333,39 @@ public class App extends Application {
                 
         });
         
+        
+        startSortBtnInsertionSort.setOnAction(event -> {
+            if (!(SortingAlgorithms.isSorted(numsI, 0, numsI.length))) {
+                
+            for (int i = first + 1; i < last; i++) {
+                // store the value that we'll insert
+                int next = numsI[i];
+                // Start searching backwards numsIfor where we're going to insert next
+                int iFill = i - 1;
+                while ((iFill >= 0) && (next < numsI[iFill]))
+                {
+                    // As long as this is true, move the iFill element up one to make space
+                    numsI[iFill + 1] = numsI[iFill];
+                    iFill--;
+                }
+                // when we're done, we know where our element belongs
+                numsI[iFill + 1] = next;
+            }
+            
+            ifield1.setText(Integer.toString(numsI[0]));   
+            ifield2.setText(Integer.toString(numsI[1]));
+            ifield3.setText(Integer.toString(numsI[2]));
+            ifield4.setText(Integer.toString(numsI[3]));
+            ifield5.setText(Integer.toString(numsI[4]));
+            ifield6.setText(Integer.toString(numsI[5]));
+            ifield7.setText(Integer.toString(numsI[6]));
+            ifield8.setText(Integer.toString(numsI[7]));
+            ifield9.setText(Integer.toString(numsI[8]));
+            ifield10.setText(Integer.toString(numsI[9]));
+                
+            }        
+        });
+        
         resetBtnInsertionSort.setOnAction(event -> {
             ifield1.clear();
             ifield2.clear();
@@ -392,6 +445,87 @@ public class App extends Application {
                 
         });
         
+        startSortBtnQuickSort.setOnAction(event -> {
+            if (!(SortingAlgorithms.isSorted(numsQ, 0, numsQ.length))) {
+                
+            if (last - first > 3) {
+                // What's the middle element
+                int mid = first + (last - first) / 2;
+                // Sort the first, middle, and last elements
+                if (numsQ[first] > numsQ[mid]) {
+                    swapElements(numsQ, first, mid);
+                }
+                if (numsQ[mid] > numsQ[last - 1]) {
+                    swapElements(numsQ, mid, last - 1);
+                }
+                if (numsQ[first] > numsQ[mid]) {
+                    swapElements(numsQ, first, mid);
+                }
+                // Move the pivot to the end
+                swapElements(numsQ, mid, last - 1);
+                int pivotValue = numsQ[last - 1];
+
+                // Start from both sides and work inwards
+                int indexFromLeft = first + 1;
+                int indexFromRight = last - 2;
+                boolean done = false; // this becomes true once all the elements
+                // are positioned relative to the pivot
+                while (!done) {
+                    // Move from the left until we find an element greater than the pivot
+                    while (numsQ[indexFromLeft] < pivotValue) {
+                        indexFromLeft++;
+                    }
+                    // Now move from the right until we find an element less than the pivot
+                    while (numsQ[indexFromRight] > pivotValue) {
+                        indexFromRight--;
+                    }
+                    // Provided that the left and right pointers have not crossed,
+                    // swap those elements
+                    if (indexFromLeft < indexFromRight) {
+                        swapElements(numsQ, indexFromLeft, indexFromRight);
+                        indexFromLeft++;
+                        indexFromRight--;
+                    } else {
+                        done = true;
+                    }
+                }
+                // Once the pointers cross, move the pivot into the correct location
+                swapElements(numsQ, last - 1, indexFromLeft);
+                // Let's use quickSort to sort each subarray on either side of the pivot
+                quickSort(numsQ, first, indexFromLeft);
+                quickSort(numsQ, indexFromLeft + 1, last);
+
+            } else { //do an insertion sort
+                // Start at index first + 1
+                for (int i = first + 1; i < last; i++) {
+                    // store the value that we'll insert
+                    int next = numsQ[i];
+                    // Start searching backwards for where we're going to insert next
+                    int iFill = i - 1;
+                    while (iFill >= 0 && next < numsQ[iFill]) {
+                        // As long as this is true, move the iFill element up one to make space
+                        numsQ[iFill + 1] = numsQ[iFill];
+                        iFill--;
+                    }
+                    // when we're done, we know where our element belongs
+                    numsQ[iFill + 1] = next;
+                }
+            }
+            
+            qfield1.setText(Integer.toString(numsQ[0]));   
+            qfield2.setText(Integer.toString(numsQ[1]));
+            qfield3.setText(Integer.toString(numsQ[2]));
+            qfield4.setText(Integer.toString(numsQ[3]));
+            qfield5.setText(Integer.toString(numsQ[4]));
+            qfield6.setText(Integer.toString(numsQ[5]));
+            qfield7.setText(Integer.toString(numsQ[6]));
+            qfield8.setText(Integer.toString(numsQ[7]));
+            qfield9.setText(Integer.toString(numsQ[8]));
+            qfield10.setText(Integer.toString(numsQ[9]));
+                
+            }        
+        });
+        
         resetBtnQuickSort.setOnAction(event -> {
             qfield1.clear();
             qfield2.clear();
@@ -412,6 +546,8 @@ public class App extends Application {
         tabQuickSort.setContent(quickSortVBox); // set content line
         
         tabPane.getTabs().add(tabQuickSort);
+        
+        //Scene set-up----------------------------------------------------------
 
         Scene scene = new Scene(tabPane, 1300, 800);
 
@@ -420,7 +556,8 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    
+    //Launches the scene
     public static void main(String[] args) {
         launch();
     }
