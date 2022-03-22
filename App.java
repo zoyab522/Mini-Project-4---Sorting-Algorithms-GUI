@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 /**
  * JavaFX App
  */
+
 public class App extends Application {
     
     int first = 0;
@@ -154,6 +155,8 @@ public class App extends Application {
                 numsM[i] = rand.nextInt(100); 
                 System.out.println(numsM[i]);
             }
+            
+            first = 0;
                 
             mfield1.setText(Integer.toString(numsM[0]));   
             mfield2.setText(Integer.toString(numsM[1]));
@@ -200,7 +203,7 @@ public class App extends Application {
             mfield10.clear();
         });
         
-        startSortBtnMerge.setOnAction(this::mergeButton);       
+        //startSortBtnMerge.setOnAction(this::mergeButton);       
 
         tabMergeSort.setContent(mergeSortVBox); // set content line
         
@@ -436,6 +439,8 @@ public class App extends Application {
                 numsQ[i] = rand.nextInt(100); 
                 System.out.println(numsQ[i]);
             }
+            
+            first = 0;
                 
             qfield1.setText(Integer.toString(numsQ[0]));   
             qfield2.setText(Integer.toString(numsQ[1]));
@@ -734,28 +739,20 @@ public class App extends Application {
         
         public void mergeButton(ActionEvent evt) {
             if (!(SortingAlgorithms.isSorted(numsM, 0, numsM.length))) {
+            
                 
-                int mid = first + last / 2;
-                // create a temp array
-                int temp[] = new int[last - first + 1];
+                
+            }
+        }
+        
+        // QUICK SORT PROCESS --------------------------------------------------
+        
+        public void quickButton(ActionEvent evt) {
+            if (!(SortingAlgorithms.isSorted(numsQ, 0, numsQ.length))) {
+                
+            }
+        }
 
-                // crawlers for both intervals and for temp
-                int i = first, j = mid + 1, k = 0;
-
-                // traverse both arrays and in each iteration add smaller of both elements in temp 
-                while(i <= mid && j <= last) {
-		if(numsM[i] <= numsM[j]) {
-			temp[k] = numsM[i];
-			k += 1; i += 1;
-		}
-		
-                else {
-                    temp[k] = numsM[j];
-                    k += 1; j += 1;
-		}
-            }                   
-        }   
-    }
     
     // LAUNCH THE SCENE --------------------------------------------------------
         
