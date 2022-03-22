@@ -2,6 +2,7 @@ package com.mycompany.sortingalgorithmsgui;
 
 import static com.mycompany.sortingalgorithmsgui.SortingAlgorithms.*;
 import static com.mycompany.sortingalgorithmsgui.QuickSort.*;
+import static com.mycompany.sortingalgorithmsgui.MergeSort.*;
 import java.util.Random;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -133,6 +134,10 @@ public class App extends Application {
         HBox mergeSortHBox3 = new HBox();
         mergeSortHBox3.setAlignment(Pos.CENTER);
         
+        HBox mergeSortHBox4 = new HBox();
+        mergeSortHBox4.setAlignment(Pos.CENTER);
+        Label mergeLabel = new Label ("");
+        
         Label mergeSortLabel = new Label("\n\nMerge Sort Description: " 
                 + "Merge Sort divides the input array into two halves,\ncalls itself "
                 + "for the two halves, and then merges the two sorted halves.");
@@ -147,9 +152,7 @@ public class App extends Application {
         Button resetBtnMerge = new Button("Reset Numbers");
         
         mergeSortHBox3.getChildren().addAll(randBtnMerge, startSortBtnMerge, resetBtnMerge);
-        
-        mergeSortVBox.getChildren().addAll(mergeSortHBox1, mergeSortHBox2, mergeSortHBox3);
-        
+                
         randBtnMerge.setOnAction(event -> {
             for (int i = 0; i < numsM.length; i++) {
                 numsM[i] = rand.nextInt(100); 
@@ -171,21 +174,77 @@ public class App extends Application {
                 
         });
         
+        MergeSort merge = new MergeSort();
+        
         startSortBtnMerge.setOnAction(event -> {
             if (!(SortingAlgorithms.isSorted(numsM, 0, numsM.length))) {
                 
-            mergeSort(numsM, first, last - 1);
+            //mergeSort(numsM, first, last - 1);
             
-            mfield1.setText(Integer.toString(numsM[0]));   
-            mfield2.setText(Integer.toString(numsM[1]));
-            mfield3.setText(Integer.toString(numsM[2]));
-            mfield4.setText(Integer.toString(numsM[3]));
-            mfield5.setText(Integer.toString(numsM[4]));
-            mfield6.setText(Integer.toString(numsM[5]));
-            mfield7.setText(Integer.toString(numsM[6]));
-            mfield8.setText(Integer.toString(numsM[7]));
-            mfield9.setText(Integer.toString(numsM[8]));
-            mfield10.setText(Integer.toString(numsM[9]));
+            int mergeArray[] = new int[10];
+            
+            String m1 = mfield1.getText();
+            int num1 = Integer.parseInt(m1);
+            mergeArray[0] = num1;
+            
+            String m2 = mfield2.getText();
+            int num2 = Integer.parseInt(m2);
+            mergeArray[1] = num2;
+            
+            String m3 = mfield3.getText();
+            int num3 = Integer.parseInt(m3);
+            mergeArray[2] = num3;
+            
+            String m4 = mfield4.getText();
+            int num4 = Integer.parseInt(m4);
+            mergeArray[3] = num4;
+            
+            String m5 = mfield5.getText();
+            int num5 = Integer.parseInt(m5);
+            mergeArray[4] = num5;
+            
+            String m6 = mfield6.getText();
+            int num6 = Integer.parseInt(m6);
+            mergeArray[5] = num6;
+            
+            String m7 = mfield7.getText();
+            int num7 = Integer.parseInt(m7);
+            mergeArray[6] = num7;
+            
+            String m8 = mfield8.getText();
+            int num8 = Integer.parseInt(m8);
+            mergeArray[7] = num8;
+            
+            String m9 = mfield9.getText();
+            int num9 = Integer.parseInt(m9);
+            mergeArray[8] = num9;
+            
+            String m10 = mfield10.getText();
+            int num10 = Integer.parseInt(m10);
+            mergeArray[9] = num10;
+            
+            String mergeSteps = "";
+            
+            
+            mergeSteps = merge.mergeSort(mergeArray, 0, mergeArray.length - 1);
+            
+            String mergeSortFinal = "";
+            for (int i = 0; i < 10; i++) {
+                mergeSortFinal = mergeSortFinal + Integer.toString(mergeArray[i]) + " ";
+            }
+            
+            mergeLabel.setText("\t\tSteps: \n\n" + mergeSteps + "\n\t Sorted array: \n\n" + mergeSortFinal);
+                        
+            mfield1.setText(Integer.toString(mergeArray[0]));   
+            mfield2.setText(Integer.toString(mergeArray[1]));
+            mfield3.setText(Integer.toString(mergeArray[2]));
+            mfield4.setText(Integer.toString(mergeArray[3]));
+            mfield5.setText(Integer.toString(mergeArray[4]));
+            mfield6.setText(Integer.toString(mergeArray[5]));
+            mfield7.setText(Integer.toString(mergeArray[6]));
+            mfield8.setText(Integer.toString(mergeArray[7]));
+            mfield9.setText(Integer.toString(mergeArray[8]));
+            mfield10.setText(Integer.toString(mergeArray[9]));
                 
             }        
         });
@@ -202,9 +261,11 @@ public class App extends Application {
             mfield9.clear();
             mfield10.clear();
         });
-        
-        //startSortBtnMerge.setOnAction(this::mergeButton);       
-
+                
+        mergeSortHBox4.getChildren().addAll(mergeLabel);
+            
+        mergeSortVBox.getChildren().addAll(mergeSortHBox1, mergeSortHBox2, mergeSortHBox3, mergeSortHBox4);
+            
         tabMergeSort.setContent(mergeSortVBox); // set content line
         
         tabPane.getTabs().add(tabMergeSort);
@@ -808,16 +869,6 @@ public class App extends Application {
                 ifield8.setStyle("-fx-background-color: #39FF14;");
                 ifield9.setStyle("-fx-background-color: #39FF14;");
                 ifield10.setStyle("-fx-background-color: #39FF14;");    
-            }
-        }
-        
-        // MERGE BUTTON PROCESS ------------------------------------------------
-        
-        public void mergeButton(ActionEvent evt) {
-            if (!(SortingAlgorithms.isSorted(numsM, 0, numsM.length))) {
-            
-                
-                
             }
         }
     
