@@ -1,7 +1,7 @@
 package com.mycompany.sortingalgorithmsgui;
 
 import static com.mycompany.tabtest.SortingAlgorithms.*;
-import static com.mycompany.tabtest.MergeSort.*;
+// import static com.mycompany.tabtest.MergeSort.*;
 import java.util.Random;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -18,17 +18,74 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.*;
+import javafx.event.ActionEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.paint.Color;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
-
+    
+    int first = 0;
+    int last = 10;
+    
+    int[] numsM = new int[10];
+    
+    TextField mfield1 = new TextField();
+    TextField mfield2 = new TextField();
+    TextField mfield3 = new TextField();
+    TextField mfield4 = new TextField();
+    TextField mfield5 = new TextField();
+    TextField mfield6 = new TextField();
+    TextField mfield7 = new TextField();
+    TextField mfield8 = new TextField();
+    TextField mfield9 = new TextField();
+    TextField mfield10 = new TextField();
+    
+    int[] numsS = new int[10];
+    
+    TextField sfield1 = new TextField();
+    TextField sfield2 = new TextField();
+    TextField sfield3 = new TextField();
+    TextField sfield4 = new TextField();
+    TextField sfield5 = new TextField();
+    TextField sfield6 = new TextField();
+    TextField sfield7 = new TextField();
+    TextField sfield8 = new TextField();
+    TextField sfield9 = new TextField();
+    TextField sfield10 = new TextField();
+    
+    int[] numsI = new int[10];
+    
+    TextField ifield1 = new TextField();
+    TextField ifield2 = new TextField();
+    TextField ifield3 = new TextField();
+    TextField ifield4 = new TextField();
+    TextField ifield5 = new TextField();
+    TextField ifield6 = new TextField();
+    TextField ifield7 = new TextField();
+    TextField ifield8 = new TextField();
+    TextField ifield9 = new TextField();
+    TextField ifield10 = new TextField();
+    
+    int[] numsQ = new int[10]; 
+    
+    TextField qfield1 = new TextField();
+    TextField qfield2 = new TextField();
+    TextField qfield3 = new TextField();
+    TextField qfield4 = new TextField();
+    TextField qfield5 = new TextField();
+    TextField qfield6 = new TextField();
+    TextField qfield7 = new TextField();
+    TextField qfield8 = new TextField();
+    TextField qfield9 = new TextField();
+    TextField qfield10 = new TextField();
+        
     @Override
     public void start(Stage stage) {
 
@@ -62,15 +119,6 @@ public class App extends Application {
         imageViewTJG.setPreserveRatio(true);
         imageViewTJG.setFitHeight(800);
         
-        /*
-        Label SortingIntroLabel = new Label("Sorting Efficiency" + "\n" + "\n" + 
-                "The two main criterias to judge which algorithm is better than the other have been:" 
-                + "\n" + "\n" 
-                + "    1 - Time taken to sort the given data." + ""
-                + "\n" + "    2 - Memory Space required to do so.");
-        
-        hbox.getChildren().add(SortingIntroLabel);*/
-        
         tabSortingIntro.setContent(hbox); // set content line
         
         tabPane.getTabs().add(tabSortingIntro);
@@ -95,17 +143,6 @@ public class App extends Application {
                 + "for the two halves, and then merges the two sorted halves.");
         
         mergeSortHBox1.getChildren().add(mergeSortLabel);
-        
-        TextField mfield1 = new TextField();
-        TextField mfield2 = new TextField();
-        TextField mfield3 = new TextField();
-        TextField mfield4 = new TextField();
-        TextField mfield5 = new TextField();
-        TextField mfield6 = new TextField();
-        TextField mfield7 = new TextField();
-        TextField mfield8 = new TextField();
-        TextField mfield9 = new TextField();
-        TextField mfield10 = new TextField();
                 
         mergeSortHBox2.getChildren().addAll
         (mfield1, mfield2, mfield3, mfield4, mfield5, mfield6, mfield7, mfield8, mfield9, mfield10);
@@ -117,10 +154,6 @@ public class App extends Application {
         mergeSortHBox3.getChildren().addAll(randBtnMerge, startSortBtnMerge, resetBtnMerge);
         
         mergeSortVBox.getChildren().addAll(mergeSortHBox1, mergeSortHBox2, mergeSortHBox3);
-
-        int[] numsM = new int[10];
-        int first = 0;
-        int last = numsM.length;
         
         randBtnMerge.setOnAction(event -> {
             for (int i = 0; i < numsM.length; i++) {
@@ -144,7 +177,7 @@ public class App extends Application {
         startSortBtnMerge.setOnAction(event -> {
             if (!(SortingAlgorithms.isSorted(numsM, 0, numsM.length))) {
                 
-            mergeSort(numsM,first,last);
+            mergeSort(numsM,first,last-1);
             
             mfield1.setText(Integer.toString(numsM[0]));   
             mfield2.setText(Integer.toString(numsM[1]));
@@ -197,17 +230,6 @@ public class App extends Application {
                 + "element and putting it at the beginning.");
         
         selectionSortHBox1.getChildren().add(selectionSortLabel);
-        
-        TextField sfield1 = new TextField();
-        TextField sfield2 = new TextField();
-        TextField sfield3 = new TextField();
-        TextField sfield4 = new TextField();
-        TextField sfield5 = new TextField();
-        TextField sfield6 = new TextField();
-        TextField sfield7 = new TextField();
-        TextField sfield8 = new TextField();
-        TextField sfield9 = new TextField();
-        TextField sfield10 = new TextField();
                 
         selectionSortHBox2.getChildren().addAll
         (sfield1, sfield2, sfield3, sfield4, sfield5, sfield6, sfield7, sfield8, sfield9, sfield10);
@@ -216,7 +238,6 @@ public class App extends Application {
         Button startSortBtnSelectionSort = new Button("Start Selection Sort");
         Button resetBtnSelectionSort = new Button("Reset Numbers");
        
-        int[] numsS = new int[10];
             
         randBtnSelectionSort.setOnAction(event -> {
             for (int i = 0; i < numsS.length; i++) {
@@ -224,6 +245,19 @@ public class App extends Application {
                 System.out.println(numsS[i]);
             }
                 
+            first = 0;
+            
+            sfield1.setStyle("-fx-background-color: white;");
+            sfield2.setStyle("-fx-background-color: white;");
+            sfield3.setStyle("-fx-background-color: white;");
+            sfield4.setStyle("-fx-background-color: white;");
+            sfield5.setStyle("-fx-background-color: white;");
+            sfield6.setStyle("-fx-background-color: white;");
+            sfield7.setStyle("-fx-background-color: white;");
+            sfield8.setStyle("-fx-background-color: white;");
+            sfield9.setStyle("-fx-background-color: white;");
+            sfield10.setStyle("-fx-background-color: white;");
+            
             sfield1.setText(Integer.toString(numsS[0]));   
             sfield2.setText(Integer.toString(numsS[1]));
             sfield3.setText(Integer.toString(numsS[2]));
@@ -237,42 +271,8 @@ public class App extends Application {
                 
         });
         
-        startSortBtnSelectionSort.setOnAction(event -> {
-            if (!(SortingAlgorithms.isSorted(numsS, 0, numsS.length))) {
-                
-            for (int i = first; i < last; i++) {
-                // Find the smallest value in the unsorted part of the array
-                // Initialize with the first element in the unsorted part of the array
-                int small = numsS[i];
-                int iSmall = i;
-                // Now look for the smallest element
-                for (int j = i + 1; j < last; j++) {
-                    if (numsS[j] < small) {
-                        small = numsS[j];
-                        iSmall = j;
-                    }
-                }
-                // We now know the smallest value in the unsorted array
-                if (i != iSmall) { // if the smallest value isn't the first one, swap
-                    swapElements(numsS, i, iSmall);
-         
-                }
+        startSortBtnSelectionSort.setOnAction(this::selectionButton);       
             
-            }
-            
-            sfield1.setText(Integer.toString(numsS[0]));   
-            sfield2.setText(Integer.toString(numsS[1]));
-            sfield3.setText(Integer.toString(numsS[2]));
-            sfield4.setText(Integer.toString(numsS[3]));
-            sfield5.setText(Integer.toString(numsS[4]));
-            sfield6.setText(Integer.toString(numsS[5]));
-            sfield7.setText(Integer.toString(numsS[6]));
-            sfield8.setText(Integer.toString(numsS[7]));
-            sfield9.setText(Integer.toString(numsS[8]));
-            sfield10.setText(Integer.toString(numsS[9]));
-                
-            }        
-        });
         
         resetBtnSelectionSort.setOnAction(event -> {
             sfield1.clear();
@@ -285,6 +285,18 @@ public class App extends Application {
             sfield8.clear();
             sfield9.clear();
             sfield10.clear();
+            
+            sfield1.setStyle("-fx-background-color: white;");
+            sfield2.setStyle("-fx-background-color: white;");
+            sfield3.setStyle("-fx-background-color: white;");
+            sfield4.setStyle("-fx-background-color: white;");
+            sfield5.setStyle("-fx-background-color: white;");
+            sfield6.setStyle("-fx-background-color: white;");
+            sfield7.setStyle("-fx-background-color: white;");
+            sfield8.setStyle("-fx-background-color: white;");
+            sfield9.setStyle("-fx-background-color: white;");
+            sfield10.setStyle("-fx-background-color: white;");
+            
         });
         
         selectionSortHBox3.getChildren().addAll(randBtnSelectionSort, startSortBtnSelectionSort, resetBtnSelectionSort);
@@ -313,17 +325,6 @@ public class App extends Application {
                 + "from \nthe unsorted part are picked and placed at the correct position in the sorted part.\n\n");
         
         insertionSortHBox1.getChildren().add(insertionSortLabel);
-        
-        TextField ifield1 = new TextField();
-        TextField ifield2 = new TextField();
-        TextField ifield3 = new TextField();
-        TextField ifield4 = new TextField();
-        TextField ifield5 = new TextField();
-        TextField ifield6 = new TextField();
-        TextField ifield7 = new TextField();
-        TextField ifield8 = new TextField();
-        TextField ifield9 = new TextField();
-        TextField ifield10 = new TextField();
                 
         insertionSortHBox2.getChildren().addAll
         (ifield1, ifield2, ifield3, ifield4, ifield5, ifield6, ifield7, ifield8, ifield9, ifield10);
@@ -332,45 +333,12 @@ public class App extends Application {
         Button startSortBtnInsertionSort = new Button("Start Insertion Sort");
         Button resetBtnInsertionSort = new Button("Reset Numbers");
         
-        int[] numsI = new int[10];
-        
         randBtnInsertionSort.setOnAction(event -> {
             for (int i = 0; i < numsI.length; i++) {
                 numsI[i] = rand.nextInt(100); 
                 System.out.println(numsI[i]);
             }
-                
-            ifield1.setText(Integer.toString(numsI[0]));   
-            ifield2.setText(Integer.toString(numsI[1]));
-            ifield3.setText(Integer.toString(numsI[2]));
-            ifield4.setText(Integer.toString(numsI[3]));
-            ifield5.setText(Integer.toString(numsI[4]));
-            ifield6.setText(Integer.toString(numsI[5]));
-            ifield7.setText(Integer.toString(numsI[6]));
-            ifield8.setText(Integer.toString(numsI[7]));
-            ifield9.setText(Integer.toString(numsI[8]));
-            ifield10.setText(Integer.toString(numsI[9]));
-                
-        });
-        
-        
-        startSortBtnInsertionSort.setOnAction(event -> {
-            if (!(SortingAlgorithms.isSorted(numsI, 0, numsI.length))) {
-                
-            for (int i = first + 1; i < last; i++) {
-                // store the value that we'll insert
-                int next = numsI[i];
-                // Start searching backwards numsIfor where we're going to insert next
-                int iFill = i - 1;
-                while ((iFill >= 0) && (next < numsI[iFill]))
-                {
-                    // As long as this is true, move the iFill element up one to make space
-                    numsI[iFill + 1] = numsI[iFill];
-                    iFill--;
-                }
-                // when we're done, we know where our element belongs
-                numsI[iFill + 1] = next;
-            }
+            first = 0;    
             
             ifield1.setText(Integer.toString(numsI[0]));   
             ifield2.setText(Integer.toString(numsI[1]));
@@ -382,9 +350,21 @@ public class App extends Application {
             ifield8.setText(Integer.toString(numsI[7]));
             ifield9.setText(Integer.toString(numsI[8]));
             ifield10.setText(Integer.toString(numsI[9]));
+            
+            ifield1.setStyle("-fx-background-color: white;");
+            ifield2.setStyle("-fx-background-color: white;");
+            ifield3.setStyle("-fx-background-color: white;");
+            ifield4.setStyle("-fx-background-color: white;");
+            ifield5.setStyle("-fx-background-color: white;");
+            ifield6.setStyle("-fx-background-color: white;");
+            ifield7.setStyle("-fx-background-color: white;");
+            ifield8.setStyle("-fx-background-color: white;");
+            ifield9.setStyle("-fx-background-color: white;");
+            ifield10.setStyle("-fx-background-color: white;");
                 
-            }        
         });
+        
+        startSortBtnInsertionSort.setOnAction(this::insertionButton);
         
         resetBtnInsertionSort.setOnAction(event -> {
             ifield1.clear();
@@ -397,6 +377,17 @@ public class App extends Application {
             ifield8.clear();
             ifield9.clear();
             ifield10.clear();
+            
+            ifield1.setStyle("-fx-background-color: white;");
+            ifield2.setStyle("-fx-background-color: white;");
+            ifield3.setStyle("-fx-background-color: white;");
+            ifield4.setStyle("-fx-background-color: white;");
+            ifield5.setStyle("-fx-background-color: white;");
+            ifield6.setStyle("-fx-background-color: white;");
+            ifield7.setStyle("-fx-background-color: white;");
+            ifield8.setStyle("-fx-background-color: white;");
+            ifield9.setStyle("-fx-background-color: white;");
+            ifield10.setStyle("-fx-background-color: white;");
         });
         
         insertionSortHBox3.getChildren().addAll(randBtnInsertionSort, startSortBtnInsertionSort, resetBtnInsertionSort);
@@ -442,9 +433,7 @@ public class App extends Application {
         
         Button randBtnQuickSort = new Button("Generate Random Numbers");
         Button startSortBtnQuickSort = new Button("Start Quick Sort");
-        Button resetBtnQuickSort = new Button("Reset Numbers");
-        
-        int[] numsQ = new int[10];        
+        Button resetBtnQuickSort = new Button("Reset Numbers");       
         
         randBtnQuickSort.setOnAction(event -> {
             for (int i = 0; i < numsQ.length; i++) {
@@ -572,16 +561,195 @@ public class App extends Application {
         Scene scene = new Scene(tabPane, 1300, 800);
 
         scene.getStylesheets().add("application.css");
-        /*Image img = new Image("src/main/images/mainpage.png");
-        BackgroundImage bImg = new BackgroundImage(img,
-                                                   BackgroundRepeat.NO_REPEAT,
-                                                   BackgroundRepeat.NO_REPEAT,
-                                                   BackgroundPosition.DEFAULT,
-                                                   BackgroundSize.DEFAULT);
-        Background bGround = new Background(bImg);
-        tabPane.setBackground(bGround);*/
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void selectionButton(ActionEvent evt){
+            sfield1.setStyle("-fx-background-color: white;");
+            sfield2.setStyle("-fx-background-color: white;");
+            sfield3.setStyle("-fx-background-color: white;");
+            sfield4.setStyle("-fx-background-color: white;");
+            sfield5.setStyle("-fx-background-color: white;");
+            sfield6.setStyle("-fx-background-color: white;");
+            sfield7.setStyle("-fx-background-color: white;");
+            sfield8.setStyle("-fx-background-color: white;");
+            sfield9.setStyle("-fx-background-color: white;");
+            sfield10.setStyle("-fx-background-color: white;");
+            
+            if (!(SortingAlgorithms.isSorted(numsS, 0, numsS.length))) {
+                
+            if (first < last) {
+                int i = first;
+                // Find the smallest value in the unsorted part of the array
+                // Initialize with the first element in the unsorted part of the array
+                int small = numsS[i];
+                int iSmall = i;
+                // Now look for the smallest element
+                for (int j = i + 1; j < last; j++) {
+                    if (numsS[j] < small) {
+                        small = numsS[j];
+                        iSmall = j;
+                    }
+                }
+                // We now know the smallest value in the unsorted array
+                if (i != iSmall) { // if the smallest value isn't the first one, swap
+                    swapElements(numsS, i, iSmall);
+                    
+                    sfield1.setText(Integer.toString(numsS[0]));   
+                    sfield2.setText(Integer.toString(numsS[1]));
+                    sfield3.setText(Integer.toString(numsS[2]));
+                    sfield4.setText(Integer.toString(numsS[3]));
+                    sfield5.setText(Integer.toString(numsS[4]));
+                    sfield6.setText(Integer.toString(numsS[5]));
+                    sfield7.setText(Integer.toString(numsS[6]));
+                    sfield8.setText(Integer.toString(numsS[7]));
+                    sfield9.setText(Integer.toString(numsS[8]));
+                    sfield10.setText(Integer.toString(numsS[9]));
+                    
+                    if (i == 0 || iSmall == 0)
+                        sfield1.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 1 || iSmall == 1)
+                        sfield2.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 2 || iSmall == 2)
+                        sfield3.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 3 || iSmall == 3)
+                        sfield4.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 4 || iSmall == 4)
+                        sfield5.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 5 || iSmall == 5)
+                        sfield6.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 6 || iSmall == 6)
+                        sfield7.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 7 || iSmall == 7)
+                        sfield8.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 8 || iSmall == 8)
+                        sfield9.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 9 || iSmall == 9)
+                        sfield10.setStyle("-fx-background-color: #f1e740;");
+                }
+            
+            }
+            
+            first++;
+                
+            }
+            else{
+                sfield1.setStyle("-fx-background-color: #39FF14;");
+                sfield2.setStyle("-fx-background-color: #39FF14;");
+                sfield3.setStyle("-fx-background-color: #39FF14;");
+                sfield4.setStyle("-fx-background-color: #39FF14;");
+                sfield5.setStyle("-fx-background-color: #39FF14;");
+                sfield6.setStyle("-fx-background-color: #39FF14;");
+                sfield7.setStyle("-fx-background-color: #39FF14;");
+                sfield8.setStyle("-fx-background-color: #39FF14;");
+                sfield9.setStyle("-fx-background-color: #39FF14;");
+                sfield10.setStyle("-fx-background-color: #39FF14;");    
+            }
+    }
+    
+    public void insertionButton(ActionEvent evt){
+            if (!(SortingAlgorithms.isSorted(numsI, 0, numsI.length))) {
+                
+            if (first < last) {
+                int i = first;
+                // store the value that we'll insert
+                int next = numsI[i];
+                // Start searching backwards numsIfor where we're going to insert next
+                int iFill = i - 1;
+                while ((iFill >= 0) && (next < numsI[iFill]))
+                {
+                    // As long as this is true, move the iFill element up one to make space
+                    numsI[iFill + 1] = numsI[iFill];
+                    iFill--;
+                    ifield1.setText(Integer.toString(numsI[0]));   
+                    ifield2.setText(Integer.toString(numsI[1]));
+                    ifield3.setText(Integer.toString(numsI[2]));
+                    ifield4.setText(Integer.toString(numsI[3]));
+                    ifield5.setText(Integer.toString(numsI[4]));
+                    ifield6.setText(Integer.toString(numsI[5]));
+                    ifield7.setText(Integer.toString(numsI[6]));
+                    ifield8.setText(Integer.toString(numsI[7]));
+                    ifield9.setText(Integer.toString(numsI[8]));
+                    ifield10.setText(Integer.toString(numsI[9]));
+                }
+                // when we're done, we know where our element belongs
+                numsI[iFill + 1] = next;
+            }
+            
+            ifield1.setText(Integer.toString(numsI[0]));   
+            ifield2.setText(Integer.toString(numsI[1]));
+            ifield3.setText(Integer.toString(numsI[2]));
+            ifield4.setText(Integer.toString(numsI[3]));
+            ifield5.setText(Integer.toString(numsI[4]));
+            ifield6.setText(Integer.toString(numsI[5]));
+            ifield7.setText(Integer.toString(numsI[6]));
+            ifield8.setText(Integer.toString(numsI[7]));
+            ifield9.setText(Integer.toString(numsI[8]));
+            ifield10.setText(Integer.toString(numsI[9]));
+            first++;    
+            } 
+            
+            else{
+                ifield1.setStyle("-fx-background-color: #39FF14;");
+                ifield2.setStyle("-fx-background-color: #39FF14;");
+                ifield3.setStyle("-fx-background-color: #39FF14;");
+                ifield4.setStyle("-fx-background-color: #39FF14;");
+                ifield5.setStyle("-fx-background-color: #39FF14;");
+                ifield6.setStyle("-fx-background-color: #39FF14;");
+                ifield7.setStyle("-fx-background-color: #39FF14;");
+                ifield8.setStyle("-fx-background-color: #39FF14;");
+                ifield9.setStyle("-fx-background-color: #39FF14;");
+                ifield10.setStyle("-fx-background-color: #39FF14;");    
+            }
+    }
+    
+    public static void merge(int Arr[], int start, int mid, int end) {
+
+	// create a temp array
+	int temp[] = new int[end - start + 1];
+
+	// crawlers for both intervals and for temp
+	int i = start, j = mid+1, k = 0;
+
+	// traverse both arrays and in each iteration add smaller of both elements in temp 
+	while(i <= mid && j <= end) {
+		if(Arr[i] <= Arr[j]) {
+			temp[k] = Arr[i];
+			k += 1; i += 1;
+		}
+		else {
+			temp[k] = Arr[j];
+			k += 1; j += 1;
+		}
+	}
+
+	// add elements left in the first interval 
+	while(i <= mid) {
+		temp[k] = Arr[i];
+		k += 1; i += 1;
+	}
+
+	// add elements left in the second interval 
+	while(j <= end) {
+		temp[k] = Arr[j];
+		k += 1; j += 1;
+	}
+
+	// copy temp to original interval
+	for(i = start; i <= end; i += 1) {
+		Arr[i] = temp[i - start];
+	}
+    }
+
+    public static void mergeSort(int Arr[], int start, int end) {
+
+            if(start < end) {
+                    int mid = (start + end) / 2;
+                    mergeSort(Arr, start, mid);
+                    mergeSort(Arr, mid+1, end);
+                    merge(Arr, start, mid, end);
+            }
     }
     
     //Launches the scene
