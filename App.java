@@ -1,7 +1,7 @@
 package com.mycompany.sortingalgorithmsgui;
 
 import static com.mycompany.sortingalgorithmsgui.SortingAlgorithms.*;
-// import static com.mycompany.tabtest.MergeSort.*;
+import static com.mycompany.sortingalgorithmsgui.QuickSort.*;
 import java.util.Random;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -226,7 +226,10 @@ public class App extends Application {
         
         Label selectionSortLabel = new Label("\n\nSelection Sort Description: "
                 + "Selection Sort sorts an array by repeatedly finding the minimum "
-                + "element and putting it at the beginning.");
+                + "element and putting it at the beginning."
+                + "\n\n\nInstructions: Yellow highlights indicate the steps of the sorting process."
+                + "\nWhen all the blocks turn green, sorting is complete. Click on the 'Start Selection Sort'"
+                + "\nbutton repeatedly until the blocks are all green.");
         
         selectionSortHBox1.getChildren().add(selectionSortLabel);
                 
@@ -321,7 +324,10 @@ public class App extends Application {
         
         Label insertionSortLabel = new Label("\n\nInsertion Sort Description: "
                 + "Insertion Sort splits an array into a sorted and an unsorted part. Values "
-                + "from \nthe unsorted part are picked and placed at the correct position in the sorted part.\n\n");
+                + "from \nthe unsorted part are picked and placed at the correct position in the sorted part.\n\n"
+                + "\nInstructions: Yellow highlights indicate the steps of the sorting process."
+                + "\nWhen all the blocks turn green, sorting is complete. Click on the 'Start Insertion Sort'"
+                + "\nbutton repeatedly until the blocks are all green.");
         
         insertionSortHBox1.getChildren().add(insertionSortLabel);
                 
@@ -400,7 +406,7 @@ public class App extends Application {
         // QUICK SORT TAB ------------------------------------------------------
 
         VBox quickSortVBox = new VBox();
-        quickSortVBox.setSpacing(80);
+        quickSortVBox.setSpacing(50);
         
         HBox quickSortHBox1 = new HBox();
         quickSortHBox1.setAlignment(Pos.TOP_CENTER);
@@ -409,6 +415,9 @@ public class App extends Application {
         
         HBox quickSortHBox3 = new HBox();
         quickSortHBox3.setAlignment(Pos.CENTER);
+        
+        HBox quickSortHBox4 = new HBox();
+        quickSortHBox4.setAlignment(Pos.CENTER);
         
         Label quickSortLabel = new Label("\n\nQuick Sort Description: "
                 + "Quick Sort picks an element as a 'pivot' and partitions the given array "
@@ -454,16 +463,75 @@ public class App extends Application {
             qfield10.setText(Integer.toString(numsQ[9]));
                 
         });
-        
+                QuickSort quick = new QuickSort();
+                Label quickLabel = new Label("");
+
         startSortBtnQuickSort.setOnAction(event -> {
             if (!(SortingAlgorithms.isSorted(numsQ, 0, numsQ.length))) {
                 
+            int quickArray[] = new int[10];
+            
+            String q1 = qfield1.getText();
+            int num1 = Integer.parseInt(q1);
+            quickArray[0] = num1;
+            
+            String q2 = qfield2.getText();
+            int num2 = Integer.parseInt(q2);
+            quickArray[1] = num2;
+            
+            String q3 = qfield3.getText();
+            int num3 = Integer.parseInt(q3);
+            quickArray[2] = num3;
+            
+            String q4 = qfield4.getText();
+            int num4 = Integer.parseInt(q4);
+            quickArray[3] = num4;
+            
+            String q5 = qfield5.getText();
+            int num5 = Integer.parseInt(q5);
+            quickArray[4] = num5;
+            
+            String q6 = qfield6.getText();
+            int num6 = Integer.parseInt(q6);
+            quickArray[5] = num6;
+            
+            String q7 = qfield7.getText();
+            int num7 = Integer.parseInt(q7);
+            quickArray[6] = num7;
+            
+            String q8 = qfield8.getText();
+            int num8 = Integer.parseInt(q8);
+            quickArray[7] = num8;
+            
+            String q9 = qfield9.getText();
+            int num9 = Integer.parseInt(q9);
+            quickArray[8] = num9;
+            
+            String q10 = qfield10.getText();
+            int num10 = Integer.parseInt(q10);
+            quickArray[9] = num10;
+                                    
+            String quickSteps = "";
+            quickSteps = quick.main(quickArray);
+            
+            
+            String quickSortFinal = "";
+            for (int i = 0; i <10; i++) {
+                quickSortFinal = quickSortFinal + Integer.toString(quickArray[i]) + " ";
+            }
+            
+            quickLabel.setText("\t\tSteps: \n\n" + quickSteps + "\n\t  Sorted array: \n\n" + quickSortFinal);
+            
+            quickSortHBox4.getChildren().addAll(quickLabel);
+            
+            /**  
             if (last - first > 3) {
                 // What's the middle element
                 int mid = first + (last - first) / 2;
                 // Sort the first, middle, and last elements
                 if (numsQ[first] > numsQ[mid]) {
                     swapElements(numsQ, first, mid);
+                    
                 }
                 if (numsQ[mid] > numsQ[last - 1]) {
                     swapElements(numsQ, mid, last - 1);
@@ -478,25 +546,31 @@ public class App extends Application {
                 // Start from both sides and work inwards
                 int indexFromLeft = first + 1;
                 int indexFromRight = last - 2;
+                
                 boolean done = false; // this becomes true once all the elements
                 // are positioned relative to the pivot
-                while (!done) {
+                
+                while (!done) {                                      
                     // Move from the left until we find an element greater than the pivot
                     while (numsQ[indexFromLeft] < pivotValue) {
                         indexFromLeft++;
+                        
                     }
                     // Now move from the right until we find an element less than the pivot
                     while (numsQ[indexFromRight] > pivotValue) {
                         indexFromRight--;
                     }
+                    
                     // Provided that the left and right pointers have not crossed,
                     // swap those elements
                     if (indexFromLeft < indexFromRight) {
                         swapElements(numsQ, indexFromLeft, indexFromRight);
                         indexFromLeft++;
                         indexFromRight--;
+                        
                     } else {
                         done = true;
+                        
                     }
                 }
                 // Once the pointers cross, move the pivot into the correct location
@@ -512,26 +586,28 @@ public class App extends Application {
                     int next = numsQ[i];
                     // Start searching backwards for where we're going to insert next
                     int iFill = i - 1;
-                    while (iFill >= 0 && next < numsQ[iFill]) {
+                    while (iFill >= 0 && next < numsQ[iFill]) 
+                    {
                         // As long as this is true, move the iFill element up one to make space
                         numsQ[iFill + 1] = numsQ[iFill];
                         iFill--;
+                        
                     }
                     // when we're done, we know where our element belongs
                     numsQ[iFill + 1] = next;
                 }
-            }
+            } */
             
-            qfield1.setText(Integer.toString(numsQ[0]));   
-            qfield2.setText(Integer.toString(numsQ[1]));
-            qfield3.setText(Integer.toString(numsQ[2]));
-            qfield4.setText(Integer.toString(numsQ[3]));
-            qfield5.setText(Integer.toString(numsQ[4]));
-            qfield6.setText(Integer.toString(numsQ[5]));
-            qfield7.setText(Integer.toString(numsQ[6]));
-            qfield8.setText(Integer.toString(numsQ[7]));
-            qfield9.setText(Integer.toString(numsQ[8]));
-            qfield10.setText(Integer.toString(numsQ[9]));
+            qfield1.setText(Integer.toString(quickArray[0]));   
+            qfield2.setText(Integer.toString(quickArray[1]));
+            qfield3.setText(Integer.toString(quickArray[2]));
+            qfield4.setText(Integer.toString(quickArray[3]));
+            qfield5.setText(Integer.toString(quickArray[4]));
+            qfield6.setText(Integer.toString(quickArray[5]));
+            qfield7.setText(Integer.toString(quickArray[6]));
+            qfield8.setText(Integer.toString(quickArray[7]));
+            qfield9.setText(Integer.toString(quickArray[8]));
+            qfield10.setText(Integer.toString(quickArray[9]));
                 
             }        
         });
@@ -551,7 +627,7 @@ public class App extends Application {
                 
         quickSortHBox3.getChildren().addAll(randBtnQuickSort, startSortBtnQuickSort, resetBtnQuickSort);
         
-        quickSortVBox.getChildren().addAll(quickSortHBox1, quickSortHBox2, quickSortHBox3);
+        quickSortVBox.getChildren().addAll(quickSortHBox1, quickSortHBox2, quickSortHBox3, quickSortHBox4);
 
         tabQuickSort.setContent(quickSortVBox); // set content line
         
@@ -662,7 +738,7 @@ public class App extends Application {
                 int next = numsI[i];
                 // Start searching backwards numsIfor where we're going to insert next
                 int iFill = i - 1;
-                while ((iFill >= 0) && (next < numsI[iFill]))
+                while ((iFill >= 0) && (next <= numsI[iFill]))
                 {
                     // As long as this is true, move the iFill element up one to make space
                     numsI[iFill + 1] = numsI[iFill];
@@ -744,15 +820,6 @@ public class App extends Application {
                 
             }
         }
-        
-        // QUICK SORT PROCESS --------------------------------------------------
-        
-        public void quickButton(ActionEvent evt) {
-            if (!(SortingAlgorithms.isSorted(numsQ, 0, numsQ.length))) {
-                
-            }
-        }
-
     
     // LAUNCH THE SCENE --------------------------------------------------------
         
