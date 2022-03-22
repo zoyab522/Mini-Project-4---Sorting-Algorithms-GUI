@@ -1,39 +1,68 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.sortingalgorithmsgui;
 
 public class MergeSort {
-    
-    public static void merge(int Arr[], int start, int mid, int end) {
 
-	// create a temp array
-	int temp[] = new int[end - start + 1];
+    //String string7;
+    public static String mergeSort(int[] array, int low, int high) {
+        String str = "";
+        if (high <= low) {
+            return str;
+        }
 
-	// crawlers for both intervals and for temp
-	int i = start, j = mid+1, k = 0;
+        int mid = (low + high) / 2;
+        mergeSort(array, low, mid);
+        mergeSort(array, mid + 1, high);
+        str = merge(array, low, mid, high);
+        return str;
+    }
 
-	// traverse both arrays and in each iteration add smaller of both elements in temp 
-	while(i <= mid && j <= end) {
-		if(Arr[i] <= Arr[j]) {
-			temp[k] = Arr[i];
-			k += 1; i += 1;
-		}
-		else {
-			temp[k] = Arr[j];
-			k += 1; j += 1;
-		}
-	}
+    public static String merge(int[] array, int low, int mid, int high) {
+        String empty = "";
+        int leftArray[] = new int[mid - low + 1];
+        int rightArray[] = new int[high - mid];
 
-	// add elements left in the first interval 
-	while(i <= mid) {
-		temp[k] = Arr[i];
-		k += 1; i += 1;
-	}
+        for (int i = 0; i < leftArray.length; i++) {
+            leftArray[i] = array[low + i];
+        }
+        for (int i = 0; i < rightArray.length; i++) {
+            rightArray[i] = array[mid + i + 1];
+        }
 
-	// add elements left in the second interval 
-	while(j <= end) {
-		temp[k] = Arr[j];
-		k += 1; j += 1;
-	}
+        int leftIndex = 0;
+        int rightIndex = 0;
 
+        for (int i = low; i < high + 1; i++) {
+            if (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+                for (int n : array) {
+                    System.out.print(n);
+
+                    empty = empty + n + " ";
+                    System.out.print(", ");
+                }
+                empty += "\n";
+                if (leftArray[leftIndex] < rightArray[rightIndex]) {
+                    array[i] = leftArray[leftIndex];
+                    leftIndex++;
+                } else {
+                    array[i] = rightArray[rightIndex];
+                    rightIndex++;
+                }
+            } else if (leftIndex < leftArray.length) {
+                array[i] = leftArray[leftIndex];
+                leftIndex++;
+            } else if (rightIndex < rightArray.length) {
+                array[i] = rightArray[rightIndex];
+                rightIndex++;
+            }
+        }
+        return empty;
+    }
+
+}
 	// copy temp to original interval
 	for(i = start; i <= end; i += 1) {
 		Arr[i] = temp[i - start];
