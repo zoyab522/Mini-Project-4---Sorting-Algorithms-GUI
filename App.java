@@ -1,6 +1,6 @@
 package com.mycompany.sortingalgorithmsgui;
 
-import static com.mycompany.tabtest.SortingAlgorithms.*;
+import static com.mycompany.sortingalgorithmsgui.SortingAlgorithms.*;
 // import static com.mycompany.tabtest.MergeSort.*;
 import java.util.Random;
 import javafx.application.Application;
@@ -19,12 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.*;
 import javafx.event.ActionEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.paint.Color;
 
 /**
  * JavaFX App
@@ -109,7 +103,7 @@ public class App extends Application {
         Image image = null;
         
         try {
-            image = new Image(new FileInputStream("src/main/images/mp.png"));
+            image = new Image(new FileInputStream("src/main/mp.png"));
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -177,7 +171,7 @@ public class App extends Application {
         startSortBtnMerge.setOnAction(event -> {
             if (!(SortingAlgorithms.isSorted(numsM, 0, numsM.length))) {
                 
-            mergeSort(numsM,first,last-1);
+            mergeSort(numsM, first, last - 1);
             
             mfield1.setText(Integer.toString(numsM[0]));   
             mfield2.setText(Integer.toString(numsM[1]));
@@ -205,6 +199,8 @@ public class App extends Application {
             mfield9.clear();
             mfield10.clear();
         });
+        
+        startSortBtnMerge.setOnAction(this::mergeButton);       
 
         tabMergeSort.setContent(mergeSortVBox); // set content line
         
@@ -547,7 +543,7 @@ public class App extends Application {
             qfield9.clear();
             qfield10.clear();
         });
-        
+                
         quickSortHBox3.getChildren().addAll(randBtnQuickSort, startSortBtnQuickSort, resetBtnQuickSort);
         
         quickSortVBox.getChildren().addAll(quickSortHBox1, quickSortHBox2, quickSortHBox3);
@@ -556,16 +552,17 @@ public class App extends Application {
         
         tabPane.getTabs().add(tabQuickSort);
         
-        //Scene set-up----------------------------------------------------------
+        // SCENE SET- UP -------------------------------------------------------
 
         Scene scene = new Scene(tabPane, 1300, 800);
-
         scene.getStylesheets().add("application.css");
         stage.setScene(scene);
         stage.show();
     }
     
-    public void selectionButton(ActionEvent evt){
+        // SELECTION SORT PROCESS ----------------------------------------------
+        public void selectionButton(ActionEvent evt){
+            
             sfield1.setStyle("-fx-background-color: white;");
             sfield2.setStyle("-fx-background-color: white;");
             sfield3.setStyle("-fx-background-color: white;");
@@ -607,6 +604,7 @@ public class App extends Application {
                     sfield9.setText(Integer.toString(numsS[8]));
                     sfield10.setText(Integer.toString(numsS[9]));
                     
+                    // blocks are yellow while stepping through the process
                     if (i == 0 || iSmall == 0)
                         sfield1.setStyle("-fx-background-color: #f1e740;");
                     if (i == 1 || iSmall == 1)
@@ -628,13 +626,14 @@ public class App extends Application {
                     if (i == 9 || iSmall == 9)
                         sfield10.setStyle("-fx-background-color: #f1e740;");
                 }
-            
             }
             
             first++;
                 
             }
-            else{
+            
+            else {
+                // All blocks are green when process is completed
                 sfield1.setStyle("-fx-background-color: #39FF14;");
                 sfield2.setStyle("-fx-background-color: #39FF14;");
                 sfield3.setStyle("-fx-background-color: #39FF14;");
@@ -646,9 +645,10 @@ public class App extends Application {
                 sfield9.setStyle("-fx-background-color: #39FF14;");
                 sfield10.setStyle("-fx-background-color: #39FF14;");    
             }
-    }
+        }
     
-    public void insertionButton(ActionEvent evt){
+        // INSERTION BUTTON PROCESS --------------------------------------------
+        public void insertionButton(ActionEvent evt){
             if (!(SortingAlgorithms.isSorted(numsI, 0, numsI.length))) {
                 
             if (first < last) {
@@ -675,6 +675,28 @@ public class App extends Application {
                 }
                 // when we're done, we know where our element belongs
                 numsI[iFill + 1] = next;
+                
+                if (i == 0 || iFill == 0)
+                    // as it steps through the sorting process, blocks turn yellow 
+                        ifield1.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 1 || iFill == 1)
+                        ifield2.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 2 || iFill == 2)
+                        ifield3.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 3 || iFill == 3)
+                        ifield4.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 4 || iFill == 4)
+                        ifield5.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 5 || iFill == 5)
+                        ifield6.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 6 || iFill == 6)
+                        ifield7.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 7 || iFill == 7)
+                        ifield8.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 8 || iFill == 8)
+                        ifield9.setStyle("-fx-background-color: #f1e740;");
+                    if (i == 9 || iFill == 9)
+                        ifield10.setStyle("-fx-background-color: #f1e740;");
             }
             
             ifield1.setText(Integer.toString(numsI[0]));   
@@ -687,10 +709,14 @@ public class App extends Application {
             ifield8.setText(Integer.toString(numsI[7]));
             ifield9.setText(Integer.toString(numsI[8]));
             ifield10.setText(Integer.toString(numsI[9]));
+          
             first++;    
+            
             } 
             
-            else{
+            else {
+                
+                // when completed, all blocks turn green
                 ifield1.setStyle("-fx-background-color: #39FF14;");
                 ifield2.setStyle("-fx-background-color: #39FF14;");
                 ifield3.setStyle("-fx-background-color: #39FF14;");
@@ -702,59 +728,38 @@ public class App extends Application {
                 ifield9.setStyle("-fx-background-color: #39FF14;");
                 ifield10.setStyle("-fx-background-color: #39FF14;");    
             }
-    }
-    
-    public static void merge(int Arr[], int start, int mid, int end) {
+        }
+        
+        // MERGE BUTTON PROCESS ------------------------------------------------
+        
+        public void mergeButton(ActionEvent evt) {
+            if (!(SortingAlgorithms.isSorted(numsM, 0, numsM.length))) {
+                
+                int mid = first + last / 2;
+                // create a temp array
+                int temp[] = new int[last - first + 1];
 
-	// create a temp array
-	int temp[] = new int[end - start + 1];
+                // crawlers for both intervals and for temp
+                int i = first, j = mid + 1, k = 0;
 
-	// crawlers for both intervals and for temp
-	int i = start, j = mid+1, k = 0;
-
-	// traverse both arrays and in each iteration add smaller of both elements in temp 
-	while(i <= mid && j <= end) {
-		if(Arr[i] <= Arr[j]) {
-			temp[k] = Arr[i];
+                // traverse both arrays and in each iteration add smaller of both elements in temp 
+                while(i <= mid && j <= last) {
+		if(numsM[i] <= numsM[j]) {
+			temp[k] = numsM[i];
 			k += 1; i += 1;
 		}
-		else {
-			temp[k] = Arr[j];
-			k += 1; j += 1;
+		
+                else {
+                    temp[k] = numsM[j];
+                    k += 1; j += 1;
 		}
-	}
-
-	// add elements left in the first interval 
-	while(i <= mid) {
-		temp[k] = Arr[i];
-		k += 1; i += 1;
-	}
-
-	// add elements left in the second interval 
-	while(j <= end) {
-		temp[k] = Arr[j];
-		k += 1; j += 1;
-	}
-
-	// copy temp to original interval
-	for(i = start; i <= end; i += 1) {
-		Arr[i] = temp[i - start];
-	}
-    }
-
-    public static void mergeSort(int Arr[], int start, int end) {
-
-            if(start < end) {
-                    int mid = (start + end) / 2;
-                    mergeSort(Arr, start, mid);
-                    mergeSort(Arr, mid+1, end);
-                    merge(Arr, start, mid, end);
-            }
+            }                   
+        }   
     }
     
-    //Launches the scene
+    // LAUNCH THE SCENE --------------------------------------------------------
+        
     public static void main(String[] args) {
         launch();
     }
-
 }
