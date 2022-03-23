@@ -447,7 +447,7 @@ public class App extends Application {
         insertionSortHBox2.getChildren().addAll(ifield1, ifield2, ifield3, ifield4, ifield5, ifield6, ifield7, ifield8, ifield9, ifield10);
 
         Button randBtnInsertionSort = new Button("Generate Random Numbers");
-        Button startSortBtnInsertionSort = new Button("Start Insertion Sort");
+        Button startSortBtnInsertionSort = new Button("Start Insertion Sort: \nRepeatedly Click until boxes are GREEN");
         Button resetBtnInsertionSort = new Button("Reset Numbers");
 
         randBtnInsertionSort.setOnAction(event -> {
