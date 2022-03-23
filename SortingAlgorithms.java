@@ -1,5 +1,10 @@
 package com.mycompany.sortingalgorithmsgui;
 
+/**
+ *
+ * @author Zoya Bawangaonwala and Anika Suman
+ */
+
 public class SortingAlgorithms {
     
     public static void quickSort(int[] a, int first, int last) {
@@ -150,6 +155,24 @@ public class SortingAlgorithms {
                     merge(Arr, start, mid, end);
             }
     }
+    
+    public static int binarySearch(int[] a, int searchValue, int first, int last) {
+        int result = -1; // what we return if the searhValue isn't in the array
+        // find the midpoint of the index
+        int mid = first + (last - 1 - first) / 2;
+        if (first > last) {
+            result = -1; // the element isn't in the subarray
+        } else if (a[mid] == searchValue) {
+            result = mid; // we got lucky and the search value was at the midpoint
+        } else if (a[mid] > searchValue) {
+            // search the first hald
+            result = binarySearch(a, searchValue, first, mid - 1);
+        } else {
+            // otherwise, search the second hald
+            result = binarySearch(a, searchValue, mid + 1, last);
+        }
+        return result;
+    }
 
     // Swap two elements
     public static void swapElements(int[] a, int i, int j) {
@@ -168,4 +191,3 @@ public class SortingAlgorithms {
         return true;
     }   
 }
-
