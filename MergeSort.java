@@ -1,5 +1,10 @@
 package com.mycompany.sortingalgorithmsgui;
 
+/**
+ *
+ * @author Zoya Bawangaonwala and Anika Suman
+ */
+
 public class MergeSort {
 
     public static String mergeSort(int[] array, int low, int high) {
