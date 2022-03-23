@@ -183,7 +183,7 @@ public class SortingAlgorithms {
 
     public static boolean isSorted(int[] a, int first, int last) {
 
-        for (int i = first; i < last - 2; i++) {
+        for (int i = first; i < last - 1; i++) {
             if (a[i] > a[i + 1]) {
                 return false;
             }
