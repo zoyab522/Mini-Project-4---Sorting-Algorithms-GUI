@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  *
- * @author zoya
+ * @author Zoya Bawangaonwala and Anika Suman
  */
 public class QuickSort {
 
