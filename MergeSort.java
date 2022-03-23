@@ -1,19 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.sortingalgorithmsgui;
 
 public class MergeSort {
 
-    //String string7;
     public static String mergeSort(int[] array, int low, int high) {
         String str = "";
         if (high <= low) {
             return str;
         }
 
+        // Partition the array
         int mid = (low + high) / 2;
+        // Sort the partitions and merge
         mergeSort(array, low, mid);
         mergeSort(array, mid + 1, high);
         str = merge(array, low, mid, high);
@@ -22,12 +19,15 @@ public class MergeSort {
 
     public static String merge(int[] array, int low, int mid, int high) {
         String empty = "";
+        // 2 partitions left and right
         int leftArray[] = new int[mid - low + 1];
         int rightArray[] = new int[high - mid];
 
+        // add elements left in the first interval
         for (int i = 0; i < leftArray.length; i++) {
             leftArray[i] = array[low + i];
         }
+        // add elements left in the second interval
         for (int i = 0; i < rightArray.length; i++) {
             rightArray[i] = array[mid + i + 1];
         }
@@ -35,6 +35,7 @@ public class MergeSort {
         int leftIndex = 0;
         int rightIndex = 0;
 
+        // Step through the process (show using print statements):
         for (int i = low; i < high + 1; i++) {
             if (leftIndex < leftArray.length && rightIndex < rightArray.length) {
                 for (int n : array) {
@@ -62,21 +63,4 @@ public class MergeSort {
         return empty;
     }
 
-}
-	// copy temp to original interval
-	for(i = start; i <= end; i += 1) {
-		Arr[i] = temp[i - start];
-	}
-    }
-
-    public void mergeSort(int Arr[], int start, int end) {
-
-            if(start < end) {
-                    int mid = (start + end) / 2;
-                    mergeSort(Arr, start, mid);
-                    mergeSort(Arr, mid+1, end);
-                    merge(Arr, start, mid, end);
-            }
-    }
-    
 }
